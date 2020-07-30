@@ -1,0 +1,105 @@
+{
+  "acquisition_journey_type": "CARD_LANDING_PAGES",
+  "applicants": [
+    {
+      "type": "basic",
+      "personal_info": {
+        "names": [
+          {
+            "title": "Mr",
+            "first": "Prefill",
+            "last": "Service",
+            "middle": "H",
+            "prefix": "Agent",
+            "suffix": "221",
+            "language": "en"
+          }
+        ],
+        "emails": [
+          {
+            "type": "C",
+            "email": "test@example.com"
+          }
+        ],
+        "correspondence_preference": "email",
+        "birth_date": "19650701",
+
+        "phones": [
+          {
+            "type": "H",
+            "country_code": "44",
+            "number": "2343323432",
+            "extension": "007"
+          }
+        ],
+        "addresses": [
+          {
+            "type": "H",
+            "line1": "100A Express Street",
+            "line2": "Marylebone",
+            "line3": "",
+            "line4": "",
+            "region": "LONDON NW1",
+            "postal_code": "20012",
+            "city": "LONDON",
+            "country": "UK",
+            "language": "en",
+            "stay_duration": "45"
+          }
+        ]
+      },
+      "business_info": {
+        "business_name": "Scotland Amex",
+        "business_id": "10089098",
+        "industry_type": "Investigation",
+        "annual_business_revenue": {},
+
+
+        "company_structure": "",
+        "number_of_employees": "",
+        "phones": [
+          {
+            "type": "B",
+            "country_code": "44",
+            "number": "2343323432",
+            "extension": "007"
+          }
+        ],
+        "addresses": [
+          {
+            "type": "B",
+            "line1": "100A American Street",
+            "line2": "Marylebone",
+            "line3": "",
+            "line4": "",
+            "region": "LONDON NW1",
+            "postal_code": "20012",
+            "city": "LONDON",
+            "country": "UK",
+            "language": "en",
+            "stay_duration": "45"
+          }
+        ]
+      },
+      "product_info": {
+        "product_type": "Card",
+        "product_id": "345",
+        "offer_id": "AFHDSKF8EW",
+        "loyalty_offer_id": "ADSFDSFFDSF",
+        "pct": "D34"
+      }
+    }
+  ],
+  "partner": {
+    "unique_id": "432432434",
+    "credit_line": "23233",
+    "account_number": "232132132131321"
+  },
+  "context_info": {
+    "channel": "PT",
+    "sub_channel": "SPT"
+  },
+  "authentication_info": {
+  }
+
+}

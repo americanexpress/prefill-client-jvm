@@ -1,0 +1,878 @@
+openapi: 3.0.1
+info:
+  title: Global Prefill Service API
+  description: This is the Global Acquisition prefill service supporting the prefill feature across various applications in Acquisition portfolio
+  contact:
+    name: Amex
+    email: DAPXServices@aexp.com
+  version: "1.0"
+servers:
+  - url: /acquisition/digital
+paths:
+  /v1/applications/prefill_info:
+    post:
+      summary: Push PII Data from Partners to Amex API Layer
+      description: This API will accept PII data from Partners and facilitate the application prefill.
+      operationId: savePrefillData
+      parameters:
+        - name: Content-Type
+          in: header
+          description: Content Type Header
+          required: true
+          schema:
+            type: string
+            default: application/json
+        - name: request_timestamp
+          in: header
+          description: Content Type Header
+          schema:
+            type: string
+        - name: message_type_id
+          in: header
+          description: Value to be supplied by AMEX during integration
+          required: true
+          schema:
+            type: string
+        - name: request_id
+          in: header
+          description: 'Unique Request Identifier: identifies the client for tracking'
+          required: true
+          schema:
+            type: string
+        - name: client_id
+          in: header
+          description: 'Standard client id . Unique Client Identifier: identifies the
+          client for tracking'
+          required: true
+          schema:
+            type: string
+        - name: user_consent_status
+          in: header
+          description: specify the user consent status here
+          required: true
+          schema:
+            type: boolean
+        - name: user_consent_timestamp
+          in: header
+          description: specify the user consent timestamp
+          required: true
+          schema:
+            type: string
+        - name: country_code
+          in: header
+          description: specify the country code. ISO 3166 alpha-2 country code. e.g.
+            GB,US etc.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrefillRequest'
+        required: false
+      responses:
+        201:
+          description: Successfully processed the request.[code :0 userMessage:Successfully processed the request.]
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefillResponsePushResponse'
+        400:
+          description: Bad request. Unrecoverable Error
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        404:
+          description: Resource not found. Unrecoverable error
+          content: {}
+        500:
+          description: Internal server error.Recoverable error please retry
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      x-codegen-request-body-name: body
+  /v1/applications/encrypted_prefill_info:
+    post:
+      summary: Push PII Data from Partners to Amex Acquisition API Layer
+      description: This API will accept encrypted PII data from Partners and caches
+        temporarily PII data into Redis
+      operationId: saveEncryptedPrefillData
+      parameters:
+        - name: Content-Type
+          in: header
+          description: Content Type Header
+          required: true
+          schema:
+            type: string
+            default: application/json
+        - name: request_timestamp
+          in: header
+          description: Content Type Header
+          schema:
+            type: string
+        - name: message_type_id
+          in: header
+          description: Value to be supplied by AMEX during integration
+          required: true
+          schema:
+            type: string
+        - name: request_id
+          in: header
+          description: 'Unique Request Identifier: identifies the client for tracking'
+          required: true
+          schema:
+            type: string
+        - name: client_id
+          in: header
+          description: 'Standard client id . Unique Client Identifier: identifies the
+          client for tracking'
+          required: true
+          schema:
+            type: string
+        - name: user_consent_status
+          in: header
+          description: specify the user consent status here
+          required: true
+          schema:
+            type: boolean
+        - name: user_consent_timestamp
+          in: header
+          description: specify the user consent timestamp
+          required: true
+          schema:
+            type: string
+        - name: country_code
+          in: header
+          description: specify the country code. ISO 3166 alpha-2 country code. e.g.
+            GB,US etc.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncryptedPrefillRequest'
+        required: false
+      responses:
+        201:
+          description: Successfully processed the request.[code :0 userMessage:Successfully processed the request.]
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefillResponsePushResponse'
+        400:
+          description: Bad request. Unrecoverable Error
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        404:
+          description: Resource not found. Unrecoverable error
+          content: {}
+        500:
+          description: Internal server error.Recoverable error please retry
+          headers:
+            response_timestamp:
+              description: Time stamp for response
+              schema:
+                type: string
+            content-length:
+              description: Response content length
+              schema:
+                type: string
+            api_elapsed_time:
+              description: api elapsed time in ms
+              schema:
+                type: string
+            request_id:
+              description: Unique request id supplied by the application to track specific request
+              schema:
+                type: string
+            client_id:
+              description: 'Standard client id . Unique Client Identifier: identifies the client for tracking'
+              schema:
+                type: string
+            Content-Type:
+              description: Response content type
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'means of distinguishing different types of postal addresses  Possible
+            values : [H,B,BI,A,T,P] --> [Home,Business,Billing,Alternate,Temporary,PO
+            Box] '
+        principal_place_of_business:
+          type: boolean
+          description: means of distinguishing if BusinessInfo address is the prinicipal address
+        line1:
+          type: string
+          description: The first line of the address as it would appear on an envelope or mailing label, formatted according to the postal requirements of the destination country
+        line2:
+          type: string
+          description: The second line of the address as it would appear on an envelope or mailing label, formatted according to the postal requirements of the destination country
+        line3:
+          type: string
+          description: The third line of the address as it would appear on an envelope or mailing label, formatted according to the postal requirements of the destination country
+        line4:
+          type: string
+          description: The fourth line of the address as it would appear on an envelope or mailing label, formatted according to the postal requirements of the destination country
+        region:
+          type: string
+          description: The official, legally established subdivision of the country as defined by the local government. In some countries, e.g. US and Australia, this would be the State while in others itÃ¢â‚¬â„¢s the Province or the County
+        postal_code:
+          type: string
+          description: A code defined by the postal authorities of a country, used in identifying the geographical location of the postal address. If the postal code contains imbedded punctuation such as spaces & hyphens, then these must be captured and stored
+        city:
+          type: string
+          description: A named urban area or concentration of population, associated with a postal address. For example:Brighton, Rome, Barcelona, Phoenix. Aka post town name
+        country:
+          type: string
+          description: ISO Numeric-3 country code as required by the AMEX Country Code standard. This is the geographic area ruled by a central autonomous government
+        language:
+          type: string
+          description: address in local language (for Japan)
+        stay_duration:
+          type: string
+          description: duration for which  the applicant has lived at current address
+        residential_status:
+          type: string
+          description: used to specify the residential Status . Sample values OWNED, RENTED etc
+        status:
+          type: string
+          description: describes the status of the address if it is present or previous. Sample values - CURRENT, PREVIOUS
+    Applicant:
+      type: object
+      properties:
+        type:
+          type: string
+          description: applicant type (basic/supplement)
+        personal_info:
+          $ref: '#/components/schemas/PersonalInfo'
+        business_info:
+          $ref: '#/components/schemas/BusinessInfo'
+        offers:
+          type: array
+          description: holds array of targeted offers
+          items:
+            $ref: '#/components/schemas/Offer'
+    BusinessInfo:
+      type: object
+      properties:
+        business_name:
+          type: string
+          description: ' business Name'
+        business_id:
+          type: string
+          description: ' business Id or number'
+        industry_type:
+          type: string
+          description: ' nature of business'
+        identities:
+          type: array
+          description: National identity number of the applicant
+          items:
+            $ref: '#/components/schemas/Identity'
+        company_structure:
+          type: string
+          description: company structure, example values - CORPORATION, PARTNERSHIP,
+            SOLE_PROPRIETORSHIP, PROPRIETARY, OR PUBLIC
+        annual_business_revenue:
+          $ref: '#/components/schemas/Amount'
+        number_of_employees:
+          type: string
+          description: no of employees
+        years_in_business:
+          type: string
+          description: number of years in the current business
+        estimated_monthly_spend:
+          $ref: '#/components/schemas/Amount'
+        role_in_business:
+          type: string
+          description: role in business, example values - GENERAL_MANAGER,OWNER,PARTNER,PRESIDENT,CHAIRMAN,
+            VICE_PRESIDENT,TREASURER,OTHER_AUHORIZING_OFFICER, DIRECTOR, SOLE_TRADER,
+            SECRETARY
+        phones:
+          type: array
+          description: business phone numbers of the applicant
+          items:
+            $ref: '#/components/schemas/Phone'
+        addresses:
+          type: array
+          description: business addresses of the applicant
+          items:
+            $ref: '#/components/schemas/Address'
+        company_directors:
+          type: array
+          description: company directors of the business
+          items:
+            $ref: '#/components/schemas/CompanyDirectors'
+        beneficial_owners:
+          type: array
+          description: beneficial owners of the business
+          items:
+            $ref: '#/components/schemas/BeneficialOwners'
+      description: This model represents business info
+    CompanyDirectors:
+      type: object
+      properties:
+        names:
+          type: array
+          description: names of the company directors
+          items:
+            $ref: '#/components/schemas/Name'
+        birth_date:
+          type: string
+          description: date the company director was born, uses ISO 8601 date format
+            yyyy-mm-dd
+        addresses:
+          type: array
+          description: personal addresses of the company directors
+          items:
+            $ref: '#/components/schemas/Address'
+      description: Holds Company Directors
+    BeneficialOwners:
+      type: object
+      properties:
+        beneficial_owner_role:
+          type: string
+          description: beneficial owner's type of role in business
+        names:
+          type: array
+          description: names of the beneficial owners
+          items:
+            $ref: '#/components/schemas/Name'
+        birth_date:
+          type: string
+          description: date the beneficial owner was born, uses ISO 8601 date format
+            yyyy-mm-dd
+        percentage_of_ownership:
+          type: string
+          description: calculated percentage of beneficial owner's shares held/issued
+        addresses:
+          type: array
+          description: personal addresses of the beneficial owners
+          items:
+            $ref: '#/components/schemas/Address'
+      description: Holds Beneficial Owners
+    Email:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Types of email used : Sample Values [COMMUNICATION, MARKETING,  E-STATEMENT
+            , PERSONAL, BUSINESS'
+        email:
+          type: string
+          description: email address
+      description: Holds Email
+    Income:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source of Income, for eg. SPOUSE, EMPLOYED, SELF_EMPLOYED,
+            RETIRED or OTHER_INCOME
+        frequency:
+          type: string
+          description: frequency on income
+        currency:
+          type: string
+          description: Type of currency.ISO currency code - ISO 4217. Alphabetic code
+            for currency, for eg. USD, CHF etc.
+        amount:
+          type: string
+          description: Value associated without any formatting.
+        after_tax:
+          type: boolean
+          description: Is Income after tax or before Tax
+        type:
+          type: string
+          description: 'Type of Income : Sample Values [TOTAL_ANNUAL_INCOME, NON_TAXABLE_INCOME, TOTAL_ASSETS]'
+          example: "false"
+      description: Holds Income
+    Amount:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Type of currency.ISO currency code - ISO 4217. Alphabetic code
+            for currency, for eg. USD, CHF etc.
+        amount:
+          type: string
+          description: value associated without any formatting.
+    Name:
+      type: object
+      properties:
+        title:
+          type: string
+          description: title of applicant
+        first:
+          type: string
+          description: first or given name of an individual
+        last:
+          type: string
+          description: last or surname of an individual
+        middle:
+          type: string
+          description: middle name of an individual
+        prefix:
+          type: string
+          description: title legally belonging to an individual
+        suffix:
+          type: string
+          description: suffix or title information which follows the last name of
+            an individual
+        language:
+          type: string
+          description: phonetic name local language
+    Partner:
+      type: object
+      properties:
+        unique_id:
+          type: string
+          description: unique identifier sent by partner, related to partner account
+        partner_id:
+          type: string
+          description: unique identifier of the partner
+        partner_name:
+          type: string
+          description: name of the partner
+        credit_line:
+          type: string
+        account_number:
+          type: string
+          description: An account number used by an Amex Partner. For example, a membership number
+        account_tenure_date:
+          type: string
+          description: date the user became account holder at partner, uses ISO 8601 date format yyyy-mm-dd
+      description: This model represents partner information
+    PersonalInfo:
+      type: object
+      properties:
+        names:
+          type: array
+          description: names of the applicant
+          items:
+            $ref: '#/components/schemas/Name'
+        birth_date:
+          type: string
+          description: date the applicant was born, uses ISO 8601 date format yyyy-mm-dd
+        gender:
+          type: string
+          description: applicant gender
+          enum:
+            - MALE
+            - FEMALE
+            - OTHER
+        marital_status:
+          type: string
+          description: applicant marital status
+          enum:
+            - MARRIED
+            - UNMARRIED
+        nationality:
+          type: string
+          description: applicant nationality
+        residency_status:
+          type: string
+          description: Residential status of the applicant. Sample values - CITIZEN,
+            PERMANENT_RESIDENT.
+        highest_educational_qualification:
+          type: string
+          description: applicant highest educational qualification status
+        identities:
+          type: array
+          description: National identity number of the applicant
+          items:
+            $ref: '#/components/schemas/Identity'
+        emails:
+          type: array
+          description: email addresses of the applicant
+          items:
+            $ref: '#/components/schemas/Email'
+        correspondence_preference:
+          type: string
+          description: how the user prefers to be contacted eg.home or office
+        phones:
+          type: array
+          description: personal phone numbers of the applicant
+          items:
+            $ref: '#/components/schemas/Phone'
+        addresses:
+          type: array
+          description: personal addresses of the applicant
+          items:
+            $ref: '#/components/schemas/Address'
+        incomes:
+          type: array
+          description: applicant incomes
+          items:
+            $ref: '#/components/schemas/Income'
+        expenses:
+          type: array
+          description: Expenses the applicant has, which factor in the credit card
+            offers
+          items:
+            $ref: '#/components/schemas/Expense'
+        financial_transactions:
+          type: array
+          description: Financial transaction detail of the applicant
+          items:
+            $ref: '#/components/schemas/FinancialTransaction'
+        employments:
+          type: array
+          description: The current and previous employments the applicant has had
+          items:
+            $ref: '#/components/schemas/Employment'
+        credit_selection:
+          type: string
+          description: creditscore(FICO) range selected by user
+        interest_selection:
+          type: string
+          description: type of offers the user is interested in,ex. TRAVEL_REWARDS,CASH_BACK,REWARDS_POINTS,NO_ANUAL_FEE.
+        business_owner:
+          type: string
+          description: Y - if the applicant is a business owner
+          enum:
+            - "Y"
+            - "N"
+    Phone:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Types of phone used. Possible values [H,C,B]--> [Home,Cell,Business]
+        country_code:
+          type: string
+          description: Phone Country Code
+        number:
+          type: string
+          description: The Complete Telephone number, showing Area Code and Subscriber Number
+        extension:
+          type: string
+          description: extension number
+      description: Holds Phone number
+    Identity:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Identity type. Sample values  [PASSPORT,NATIONAL_ID,DRIVER_LICENSE,GREEN_CARD,HEALTH_INSURANCE_CARD,VISA,LAST4SSN,FEDERAL_TAX_ID]
+        value:
+          type: string
+          description: Identity number
+      description: Holds Identity value
+    Employment:
+      type: object
+      properties:
+        duration:
+          type: string
+          description: Duration for which employee is empoyed with particular employer
+        name:
+          type: object
+          properties: {}
+          description: The name of this employer
+        addresses:
+          type: array
+          description: Address of employer
+          items:
+            $ref: '#/components/schemas/Address'
+        industry:
+          type: string
+          description: Industry
+        occupation:
+          type: string
+          description: Occupation of the applicant
+        status:
+          type: string
+          description: employment status
+        phones:
+          type: array
+          description: Phone Numbers
+          items:
+            $ref: '#/components/schemas/Phone'
+        type:
+          type: string
+          description: Type of employment. For example - EMPLOYED, SELF_EMPLOYED, RETIRED,PART_TIME_EMPLOYEMENT,HOME_MAKER,UN_EMPLOYED
+      description: Holds Employer details of applicant
+    EmployerName:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The name of employer, in the language specified below
+        language:
+          type: string
+          description: Language in which the name is sent
+      description: employer name in local language
+    FinancialTransaction:
+      type: object
+      properties:
+        contributor_name:
+          type: string
+          description: Contributor name
+        transaction_date:
+          type: string
+          description: transaction date
+        contribution_month:
+          type: string
+          description: contribution month
+        frequency:
+          type: string
+          description: Frequency of the expense, Ex ANNUAL,MONTHLY.
+        currency:
+          type: string
+          description: type of currency
+        amount:
+          type: string
+          description: amount
+        transaction_id:
+          type: string
+          description: transaction id
+        transaction_type:
+          type: string
+          description: transaction type E.g [DEBIT, CREDIT]
+        transaction_source:
+          type: string
+          description: transaction type E.g [BANK, PAYROLL]
+      description: Financial Transaction
+    Expense:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of expense
+        frequency:
+          type: string
+          description: frequency of income
+        amount:
+          $ref: '#/components/schemas/Amount'
+      description: Holds Expense amount
+    Offer:
+      type: object
+      properties:
+        acquisition_offer_id:
+          type: string
+          description: unique offer identifier
+        loyalty_offer_id:
+          type: string
+          description: unique offer identifier for Membership Rewards
+        product_type:
+          type: string
+          description: Type of product - sample value CARD
+        product_code:
+          type: string
+          description: unique id of this product
+        product_name:
+          type: string
+          description: name of the product
+        entry_point:
+          type: string
+          description: unique identifier of location
+    ErrorMessage:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP Status Code
+          format: int32
+        code:
+          type: integer
+          description: "Error Code \n Possible values \n\n 1410 : Errors related to\
+            \ request validation \n 1420  :Errors related to request parsing\n1440\
+            \ :Client specific repository errors\n 1430 :Client specific security\
+            \ errors\n\n1510 :Prefill API : API service errors\n\n 1540 : Prefill\
+            \ API : API sepcific repository errors \n\n 1530  :Prefill API : API sepcific\
+            \ security errors"
+          format: int32
+        user_message:
+          type: string
+          description: User Message
+        link:
+          type: string
+        developer_message:
+          type: string
+          description: Detailed Message
+    EncryptedPrefillRequest:
+      type: object
+      properties:
+        user_info:
+          type: string
+          description: encrypted payload w.r.t. agreed JWE standards
+      description: Prefill Request
+    PrefillResponsePushResponse:
+      type: object
+      properties:
+        prefill_info:
+          $ref: '#/components/schemas/PushResponse'
+    PushResponse:
+      type: object
+      properties:
+        applicant_request_token:
+          type: string
+          description: unique request token returned to client for each applicant, unique for each request for the applicant
+        applicant_request_token_expires_in:
+          type: string
+          description: Time to live for token; the amount of time a token will remain
+            valid.
+        redirect_url:
+          type: string
+          description: redirect url to which partner sends the application_request_token
+    PrefillRequest:
+      type: object
+      properties:
+        applicants:
+          type: array
+          description: list of applicants
+          items:
+            $ref: '#/components/schemas/Applicant'
+        partner:
+          $ref: '#/components/schemas/Partner'
+        context_info:
+          type: object
+          additionalProperties:
+            type: string
+          description: Holds client specific attributes. Key value pairs
+        acquisition_journey_type:
+          type: string
+          description: To identity journey type into acquisition. Value will be AFFILIATE_DEFAULT_OFFERS
+      description: Prefill Request
