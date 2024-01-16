@@ -48,16 +48,21 @@ public class PrefillServiceImpl implements PrefillService {
 
     private final Config config;
 
+    /**
+     * <p>Constructor for PrefillServiceImpl.</p>
+     *
+     * @param config a {@link com.americanexpress.sdk.prefill.configuration.Config} object
+     * @param authClient a {@link com.americanexpress.sdk.prefill.client.http.HttpClient} object
+     */
     public PrefillServiceImpl(final Config config, final HttpClient authClient) {
         this.config = config;
         this.authClient = authClient;
     }
 
     /**
-     * Save Prefill Data
+     * {@inheritDoc}
      *
-     * @return {@link PrefillResponse}
-     * @throws PrefillException
+     * Save Prefill Data
      */
     public PrefillResponsePushResponse saveData(PrefillRequest prefillRequest, RequestHeader requestHeader) throws PrefillException {
 
@@ -88,10 +93,9 @@ public class PrefillServiceImpl implements PrefillService {
     }
 
     /**
-     * Save Encrypted Prefill Dataxs
+     * {@inheritDoc}
      *
-     * @return {@link PrefillResponse}
-     * @throws PrefillException
+     * Save Encrypted Prefill Dataxs
      */
     public PrefillResponsePushResponse saveEncryptedData(PrefillRequest prefillRequest, RequestHeader requestHeader) throws PrefillException {
         MultivaluedMap<String, Object> headers = PrefillUtil.buildHeaders(requestHeader,

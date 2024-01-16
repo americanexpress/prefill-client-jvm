@@ -22,18 +22,18 @@ import com.americanexpress.sdk.prefill.models.prefill.PrefillResponsePushRespons
 import com.americanexpress.sdk.prefill.service.impl.PrefillServiceImpl;
 
 /**
- * 
+ *
  * The Prefill Service Interface handles all the API operations required for
  * Prefill service
- * 
- * @author jramio
  */
 public interface PrefillService {
 	/**
 	 * Save prefill data to Prefill API
 	 *
-	 * @return {@link PrefillResponse}
-	 * @throws PrefillException
+	 * @return {@link PrefillResponsePushResponse}
+	 * @throws com.americanexpress.sdk.prefill.exception.PrefillException PrefillException
+	 * @param prefillRequest a {@link com.americanexpress.sdk.prefill.models.prefill.PrefillRequest} object
+	 * @param requestHeader a {@link com.americanexpress.sdk.prefill.models.entities.RequestHeader} object
 	 */
 	public PrefillResponsePushResponse saveData(PrefillRequest prefillRequest, RequestHeader requestHeader) throws PrefillException;
 
@@ -41,8 +41,10 @@ public interface PrefillService {
 	/**
 	 * Save encrypted prefill data to Prefill API
 	 *
-	 * @return {@link PrefillResponse}
-	 * @throws PrefillException
+	 * @return {@link PrefillResponsePushResponse}
+	 * @throws com.americanexpress.sdk.prefill.exception.PrefillException
+	 * @param prefillRequest a {@link com.americanexpress.sdk.prefill.models.prefill.PrefillRequest} object
+	 * @param requestHeader a {@link com.americanexpress.sdk.prefill.models.entities.RequestHeader} object
 	 */
 	public PrefillResponsePushResponse saveEncryptedData(PrefillRequest prefillRequest, RequestHeader requestHeader) throws PrefillException;
 

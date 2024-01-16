@@ -22,10 +22,21 @@ public class PrefillApiError extends PrefillException {
 
 	private static final String USER_MESSAGE = "Prefill API Error";
 
+	/**
+	 * <p>Constructor for PrefillApiError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
+	 */
 	public PrefillApiError(String developerMessage, Throwable cause) {
 		super(USER_MESSAGE, developerMessage, cause);
 	}
 
+	/**
+	 * <p>Constructor for PrefillApiError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PrefillApiError(String developerMessage) {
 		super(USER_MESSAGE, developerMessage);
 	}

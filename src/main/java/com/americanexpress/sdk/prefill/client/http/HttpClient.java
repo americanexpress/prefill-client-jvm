@@ -33,8 +33,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 /**
  * The HttpClient class implementation handles all the HTTP operations for PE
  * API clients
- * 
- * @author jramio
  */
 public class HttpClient {
 
@@ -44,7 +42,9 @@ public class HttpClient {
 	private CloseableHttpClient client;
 
 	/**
-	 * @param client
+	 * <p>Constructor for HttpClient.</p>
+	 *
+	 * @param client a {@link org.apache.http.impl.client.CloseableHttpClient} object
 	 */
 	public HttpClient(CloseableHttpClient client) {
 		this.client = client;
@@ -54,13 +54,15 @@ public class HttpClient {
 	 * This method is used to connect to external service API to post resource to
 	 * the client
 	 *
-	 * @param apiRequest
-	 * @param apiUrl
-	 * @param headers
-	 * @param responseObject
-	 * @param responseHeaders
-	 * @return <R, T> R
-	 * @throws Exception
+	 * @param apiRequest a T object
+	 * @param apiUrl a {@link java.lang.String} object
+	 * @param headers a {@link javax.ws.rs.core.MultivaluedMap} object
+	 * @param responseObject a {@link com.fasterxml.jackson.core.type.TypeReference} object
+	 * @param responseHeaders a {@link java.util.Map} object
+	 * @return  R An R object
+	 * @throws com.americanexpress.sdk.prefill.exception.PrefillException PrefillException
+	 * @param <R> a R class
+	 * @param <T> a T class
 	 */
 	public <R, T> R postClientResource(T apiRequest, String apiUrl, MultivaluedMap<String, Object> headers,
 			TypeReference<R> responseObject, Map<String, String> responseHeaders) throws PrefillException {

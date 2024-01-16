@@ -18,8 +18,6 @@ import lombok.Setter;
 
 /**
  * This Proxy configuration class holds the HTTP Proxy builder configuration
- * 
- * @author jramio
  */
 @Getter
 @Setter
@@ -46,6 +44,14 @@ public class ProxyConfig {
 	private int port;
 
 
+	/**
+	 * <p>Constructor for ProxyConfig.</p>
+	 *
+	 * @param isProxyEnabled a boolean
+	 * @param protocol a {@link java.lang.String} object
+	 * @param host a {@link java.lang.String} object
+	 * @param port a int
+	 */
 	public ProxyConfig(boolean isProxyEnabled, String protocol, String host, int port) {
 		this.isProxyEnabled = isProxyEnabled;
 		this.protocol = protocol;
@@ -53,6 +59,11 @@ public class ProxyConfig {
 		this.port = port;
 	}
 
+	/**
+	 * <p>Constructor for ProxyConfig.</p>
+	 *
+	 * @param isProxyEnabled a boolean
+	 */
 	public ProxyConfig(boolean isProxyEnabled) {
 		this.isProxyEnabled = isProxyEnabled;
 	}

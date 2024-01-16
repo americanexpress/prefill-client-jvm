@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>ConsentInfo class.</p>
+ */
 @ApiModel(description = "Consent Info model")
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-04T07:05:21.367-07:00")
 @Data

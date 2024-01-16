@@ -21,7 +21,7 @@ import com.americanexpress.sdk.prefill.service.PrefillService;
 import com.americanexpress.sdk.prefill.service.AuthenticationService;
 
 /**
- * 
+ *
  * The Prefill Client Implementation class is used to handle all Prefill service actions
  *
  */
@@ -49,20 +49,23 @@ public class PrefillClientImpl implements PrefillClient {
 
 	/**
 	 * constructor for Prefill client implementation
-	 * 
-	 * @param config
+	 *
+	 * @param config a {@link com.americanexpress.sdk.prefill.configuration.Config} object
 	 */
 	public PrefillClientImpl(Config config) {
 		this.config = config;
 		httpClient = ApiClientFactory.createHttpClient(config);
 	}
 
+	/** {@inheritDoc} */
 	public void setAccessToken(String accessToken) {
 		this.config.setAccessToken(accessToken);
 	}
 
 	/**
 	 * create Authentication Service
+	 *
+	 * @return a {@link com.americanexpress.sdk.prefill.service.AuthenticationService} object
 	 */
 	public AuthenticationService getAuthenticationService() {
 
@@ -74,6 +77,8 @@ public class PrefillClientImpl implements PrefillClient {
 
 	/**
 	 * create Prefill Service
+	 *
+	 * @return a {@link com.americanexpress.sdk.prefill.service.PrefillService} object
 	 */
 	public PrefillService getPrefillService() {
 

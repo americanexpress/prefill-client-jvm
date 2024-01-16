@@ -17,10 +17,7 @@ import com.americanexpress.sdk.prefill.models.prefill.ErrorMessage;
 
 /**
  * The PrefillException class handles how exceptions are thrown
- *
- * @author jramio
  */
-
 public class PrefillException extends Exception {
 
 	/**
@@ -42,8 +39,10 @@ public class PrefillException extends Exception {
 	private transient ErrorMessage error;
 
 	/**
-	 * @param message
-	 * @param developerMessage
+	 * <p>Constructor for PrefillException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object
+	 * @param developerMessage a {@link java.lang.String} object
 	 */
 	public PrefillException(String message, String developerMessage) {
 		this.userMessage = message;
@@ -51,16 +50,20 @@ public class PrefillException extends Exception {
 	}
 
 	/**
-	 * @param message
+	 * <p>Constructor for PrefillException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object
 	 */
 	public PrefillException(String message) {
 		this.userMessage = message;
 	}
 
 	/**
-	 * @param userMessage
-	 * @param developerMessage
-	 * @param cause
+	 * <p>Constructor for PrefillException.</p>
+	 *
+	 * @param userMessage a {@link java.lang.String} object
+	 * @param developerMessage a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
 	 */
 	public PrefillException(String userMessage, String developerMessage, Throwable cause) {
 		this.userMessage = userMessage;
@@ -69,8 +72,11 @@ public class PrefillException extends Exception {
 	}
 
 	/**
-	 * @param error
-	 * @param cause
+	 * <p>Constructor for PrefillException.</p>
+	 *
+	 * @param error a {@link com.americanexpress.sdk.prefill.models.prefill.ErrorMessage} object
+	 * @param cause a {@link java.lang.Throwable} object
+	 * @param message a {@link java.lang.String} object
 	 */
 	public PrefillException(String message, Throwable cause, ErrorMessage error) {
 		this.userMessage = message;
@@ -79,35 +85,63 @@ public class PrefillException extends Exception {
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * <p>Constructor for PrefillException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
 	 */
 	public PrefillException(String message, Throwable cause) {
 		this.userMessage = message;
 		this.cause = cause;
 	}
 
+	/**
+	 * <p>Getter for the field <code>error</code>.</p>
+	 *
+	 * @return a {@link com.americanexpress.sdk.prefill.models.prefill.ErrorMessage} object
+	 */
 	public ErrorMessage getError() {
 		return error;
 	}
 
+	/**
+	 * <p>Setter for the field <code>error</code>.</p>
+	 *
+	 * @return a {@link com.americanexpress.sdk.prefill.models.prefill.ErrorMessage} object
+	 */
 	public ErrorMessage setError() {
 		return error;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public synchronized Throwable getCause() {
 		return cause;
 	}
 
+	/**
+	 * <p>Setter for the field <code>cause</code>.</p>
+	 *
+	 * @return a {@link java.lang.Throwable} object
+	 */
 	public Throwable setCause() {
 		return cause;
 	}
 
+	/**
+	 * <p>Getter for the field <code>userMessage</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getUserMessage() {
 		return userMessage;
 	}
 
+	/**
+	 * <p>Setter for the field <code>userMessage</code>.</p>
+	 *
+	 * @param userMessage a {@link java.lang.String} object
+	 */
 	public void setUserMessage(String userMessage) {
 		this.userMessage = userMessage;
 	}

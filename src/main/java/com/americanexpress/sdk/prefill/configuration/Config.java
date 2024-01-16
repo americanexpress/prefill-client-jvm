@@ -22,8 +22,6 @@ import lombok.Setter;
 /**
  * This configuration class holds the required builder configuration to startup
  * the Prefill SDK application
- * 
- * @author jramio
  */
 @Getter
 @Setter

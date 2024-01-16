@@ -21,8 +21,6 @@ import java.security.interfaces.RSAPublicKey;
 /**
  * This JWE configuration class holds the JWE Payload encryption builder
  * configuration
- * 
- * @author jramio
  */
 @Getter
 @Setter
@@ -39,11 +37,22 @@ public class JWEConfig {
 	private RSAPublicKey publicKey;
 
 
+	/**
+	 * <p>Constructor for JWEConfig.</p>
+	 *
+	 * @param isJWEEncryptionEnabled a boolean
+	 * @param publicKey a {@link java.security.interfaces.RSAPublicKey} object
+	 */
 	public JWEConfig(boolean isJWEEncryptionEnabled, RSAPublicKey publicKey) {
 		this.isJWEEncryptionEnabled = isJWEEncryptionEnabled;
 		this.publicKey = publicKey;
 	}
 
+	/**
+	 * <p>Constructor for JWEConfig.</p>
+	 *
+	 * @param isJWEEncryptionEnabled a boolean
+	 */
 	public JWEConfig(boolean isJWEEncryptionEnabled) {
 		this.isJWEEncryptionEnabled = isJWEEncryptionEnabled;
 	}

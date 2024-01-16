@@ -22,15 +22,14 @@ import com.americanexpress.sdk.prefill.service.impl.AuthenticationServiceImpl;
 /**
  * The AuthenticationService interface handles the OAuth Token Service
  * operations required for Prefill service
- * 
- * @author jramio
+ *
  */
 public interface AuthenticationService {
 	/**
 	 * Get AccessToken and the list of API Products approved for the token
-	 * 
-	 * @return {@link AccessTokenResponse}
-	 * @throws PrefillException
+	 *
+	 * @return {@link com.americanexpress.sdk.prefill.models.entities.AccessTokenResponse}
+	 * @throws com.americanexpress.sdk.prefill.exception.PrefillException PrefillException
 	 */
 	public AccessTokenResponse getAccessToken() throws PrefillException;
 
