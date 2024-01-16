@@ -20,14 +20,28 @@ public class PrefillResourceNotFoundError extends PrefillException {
 
 	private static final String USER_MESSAGE = "Resource not found";
 
+	/**
+	 * <p>Constructor for PrefillResourceNotFoundError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
+	 */
 	public PrefillResourceNotFoundError(String developerMessage, Throwable cause) {
 		super(USER_MESSAGE, developerMessage, cause);
 	}
 
+	/**
+	 * <p>Constructor for PrefillResourceNotFoundError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PrefillResourceNotFoundError(String developerMessage) {
 		super(USER_MESSAGE, developerMessage);
 	}
 
+	/**
+	 * <p>Constructor for PrefillResourceNotFoundError.</p>
+	 */
 	public PrefillResourceNotFoundError() {
 		super(USER_MESSAGE);
 	}

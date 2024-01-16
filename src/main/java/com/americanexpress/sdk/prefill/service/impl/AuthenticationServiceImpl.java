@@ -36,10 +36,9 @@ import static com.americanexpress.sdk.prefill.service.constants.PrefillException
 import static com.americanexpress.sdk.prefill.service.constants.PrefillExceptionConstants.REQUEST_VALIDATION_FAILED;
 
 /**
- * 
+ *
  * The Authentication Service Implementation class is used to handle OAuth Token
  * Service actions; authenticate and retrieve the access token
- *
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
@@ -47,6 +46,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	private final Config config;
 
+	/**
+	 * <p>Constructor for AuthenticationServiceImpl.</p>
+	 *
+	 * @param config a {@link com.americanexpress.sdk.prefill.configuration.Config} object
+	 * @param authClient a {@link com.americanexpress.sdk.prefill.client.http.HttpClient} object
+	 */
 	public AuthenticationServiceImpl(final Config config, final HttpClient authClient) {
 		this.config = config;
 		this.authClient = authClient;
@@ -55,9 +60,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	/**
 	 * Get AccessToken and the list of API Products approved for the token
-	 * 
-	 * @return {@link AccessTokenResponse}
-	 * @throws PrefillException
+	 *
+	 * @return {@link com.americanexpress.sdk.prefill.models.entities.AccessTokenResponse}
+	 * @throws com.americanexpress.sdk.prefill.exception.PrefillException
 	 */
 	public AccessTokenResponse getAccessToken() throws PrefillException {
 

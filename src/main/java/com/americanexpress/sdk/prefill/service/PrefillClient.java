@@ -19,31 +19,29 @@ import com.americanexpress.sdk.prefill.service.impl.PrefillClientImpl;
 /**
  * The Prefill Client Interface handles all the API operations required
  * for creating the Prefill API Client
- * 
- * @author jramio
  */
 public interface PrefillClient {
 
 	/**
 	 * Creates a new Instance of Authentication Service to help get the Access Token
 	 * required to make API calls
-	 * 
-	 * @return Instance of {@link AuthenticationService}
+	 *
+	 * @return Instance of {@link com.americanexpress.sdk.prefill.service.AuthenticationService}
 	 */
 	public AuthenticationService getAuthenticationService();
 
 	/**
 	 * Creates a new Instance of Prefill Service to help save Prefill data
-	 * 
-	 * @return Instance of {@link PrefillService}
+	 *
+	 * @return Instance of {@link com.americanexpress.sdk.prefill.service.PrefillService}
 	 */
 	public PrefillService getPrefillService();
 
 
 	/**
 	 * updates AccessToken
-	 * 
-	 * @param accessToken
+	 *
+	 * @param accessToken a {@link java.lang.String} object
 	 */
 	public void setAccessToken(String accessToken);
 

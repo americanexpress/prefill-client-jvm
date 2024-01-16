@@ -20,10 +20,21 @@ package com.americanexpress.sdk.prefill.exception;
  */
 public class PayloadEncryptionError extends PrefillException {
 
+	/**
+	 * <p>Constructor for PayloadEncryptionError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PayloadEncryptionError(String developerMessage) {
 		super(developerMessage);
 	}
 
+	/**
+	 * <p>Constructor for PayloadEncryptionError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
+	 */
 	public PayloadEncryptionError(String developerMessage, Throwable cause) {
 		super(developerMessage, cause);
 	}

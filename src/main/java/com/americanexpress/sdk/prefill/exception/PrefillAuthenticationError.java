@@ -21,10 +21,21 @@ public class PrefillAuthenticationError extends PrefillException {
 
 	private static final String USER_MESSAGE = "Prefill Authentication Error";
 
+	/**
+	 * <p>Constructor for PrefillAuthenticationError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 * @param cause a {@link java.lang.Throwable} object
+	 */
 	public PrefillAuthenticationError(String developerMessage, Throwable cause) {
 		super(USER_MESSAGE, developerMessage, cause);
 	}
 
+	/**
+	 * <p>Constructor for PrefillAuthenticationError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PrefillAuthenticationError(String developerMessage) {
 		super(USER_MESSAGE, developerMessage);
 	}

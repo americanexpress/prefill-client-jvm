@@ -22,7 +22,7 @@ import com.americanexpress.sdk.prefill.exception.PrefillRequestValidationError;
 import com.americanexpress.sdk.prefill.models.entities.AccessTokenResponse;
 import com.americanexpress.sdk.prefill.service.impl.AuthenticationServiceImpl;
 import org.apache.http.HttpEntity;
-import org.easymock.classextension.EasyMock;
+import org.easymock.EasyMock;
 import org.junit.Test;
 
 import com.americanexpress.sdk.prefill.service.AuthenticationService;

@@ -28,16 +28,14 @@ import java.security.interfaces.RSAPublicKey;
 
 /**
  * The ApiClientFactory class creates the client instance based on client type
- * 
- * @author jramio
  */
 @UtilityClass
 public class ApiClientFactory {
 
 	/**
 	 * This method will be used create HTTP client instance
-	 * 
-	 * @param config
+	 *
+	 * @param config a {@link com.americanexpress.sdk.prefill.configuration.Config} object
 	 * @return HttpClient
 	 */
 	public static HttpClient createHttpClient(Config config) {
@@ -64,8 +62,8 @@ public class ApiClientFactory {
 	/**
 	 * This method will be used create JWEHeader instance
 	 *
-	 * @param alg
-	 * @param enc
+	 * @param alg a {@link com.nimbusds.jose.JWEAlgorithm} object
+	 * @param enc a {@link com.nimbusds.jose.EncryptionMethod} object
 	 * @return JWEHeader
 	 */
 	public static JWEHeader createJWEHeader(JWEAlgorithm alg, EncryptionMethod enc) {
@@ -75,8 +73,8 @@ public class ApiClientFactory {
 	/**
 	 * This method will be used create JWEObject instance
 	 *
-	 * @param header
-	 * @param payload
+	 * @param header a {@link com.nimbusds.jose.JWEHeader} object
+	 * @param payload a {@link com.nimbusds.jose.Payload} object
 	 * @return JWEObject
 	 */
 	public static JWEObject createJWEObject(JWEHeader header, Payload payload) {
@@ -86,7 +84,7 @@ public class ApiClientFactory {
 	/**
 	 * This method will be used create RSAEncrypter instance
 	 *
-	 * @param publicKey
+	 * @param publicKey a {@link java.security.interfaces.RSAPublicKey} object
 	 * @return RSAEncrypter
 	 */
 	public static RSAEncrypter createRSAEncrypter(RSAPublicKey publicKey) {

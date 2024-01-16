@@ -18,8 +18,6 @@ import lombok.Setter;
 
 /**
  * This model represents the Access Token Response model
- * 
- * @author jramio
  */
 @Getter
 @Setter

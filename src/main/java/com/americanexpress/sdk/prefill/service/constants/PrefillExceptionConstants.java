@@ -18,26 +18,29 @@ import lombok.experimental.UtilityClass;
 /**
  * This class holds the Constants of Prefill Service Exception descriptions
  * and details
- *
- * @author jramio
  */
 @UtilityClass
 public class PrefillExceptionConstants {
 
 	/** services error constants */
 	public static final String REQUEST_VALIDATION_FAILED = "Request validation failed";
+	/** Constant <code>MANDATORY_REQUEST_PARAMETER_ERROR="Mandatory request parameters missing"</code> */
 	public static final String MANDATORY_REQUEST_PARAMETER_ERROR = "Mandatory request parameters missing";
+	/** Constant <code>INVALID_JWE_CONFIG="Invalid JWE configuration"</code> */
 	public static final String INVALID_JWE_CONFIG = "Invalid JWE configuration";
+	/** Constant <code>PREFILL_RESOURCE_NOT_FOUND="Prefill resource not found"</code> */
 	public static final String PREFILL_RESOURCE_NOT_FOUND = "Prefill resource not found";
 
 	/** validation message constants */
 	public static final String USER_INFO_NOT_NULL = "User Info data is not present";
+	/** Constant <code>APPLICANT_INFORMATION_MISSING="No Applicant Data Present"</code> */
 	public static final String APPLICANT_INFORMATION_MISSING = "No Applicant Data Present";
 
 	/**
 	 * Error Messages
 	 */
 	public static final String INTERNAL_SDK_EXCEPTION = "Internal SDK Exception";
+	/** Constant <code>INTERNAL_API_EXCEPTION="Internal API Exception"</code> */
 	public static final String INTERNAL_API_EXCEPTION = "Internal API Exception";
 
 }

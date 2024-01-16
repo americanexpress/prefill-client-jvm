@@ -21,6 +21,11 @@ public class PrefillRequestValidationError extends PrefillException {
 
 	private static final String USER_MESSAGE = "Request validation failed";
 
+	/**
+	 * <p>Constructor for PrefillRequestValidationError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PrefillRequestValidationError(String developerMessage) {
 		super(USER_MESSAGE, developerMessage);
 	}

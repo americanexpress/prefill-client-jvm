@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * <p>RequestHeader class.</p>
+ */
 @ApiModel(description = "Request Header model")
 @Data
 @Builder

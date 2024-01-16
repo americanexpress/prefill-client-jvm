@@ -48,7 +48,6 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
  * The PrefillUtil class handles the Prefill Service API call specific
  * utility methods
  *
- * @author jramio
  */
 @UtilityClass
 public class PrefillUtil {
@@ -56,10 +55,10 @@ public class PrefillUtil {
     /**
      * This method is responsible to build request entity for HttpClient
      *
-     * @param request
+     * @param request a {@link java.lang.Object} object
      * @return HttpEntity
-     * @throws UnsupportedEncodingException
-     * @throws JsonProcessingException
+     * @throws java.io.UnsupportedEncodingException exception
+     * @throws com.fasterxml.jackson.core.JsonProcessingException json exception
      */
     public static HttpEntity buildRequestEntity(Object request)
             throws UnsupportedEncodingException, JsonProcessingException {
@@ -70,9 +69,10 @@ public class PrefillUtil {
     /**
      * This method retrieves the Json to deserialized string
      *
-     * @param deserialized
-     * @return <T> String
-     * @throws IOException
+     * @param deserialized a T object
+     * @return T String
+     * @throws java.io.IOException  exception
+     * @param <T> a T class
      */
     public static <T> String getJson(T deserialized) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -85,9 +85,9 @@ public class PrefillUtil {
     /**
      * This method is the builder for Prefill request Headers
      *
-     * @param requestHeader
-     * @param config
-     * @return MultivaluedMap<String, Object>
+     * @param requestHeader a {@link com.americanexpress.sdk.prefill.models.entities.RequestHeader} object
+     * @param config a {@link com.americanexpress.sdk.prefill.configuration.Config} object
+     * @return MultivaluedMap a multiValueMap
      */
     public static MultivaluedMap<String, Object> buildHeaders(RequestHeader requestHeader, Config config) {
         MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
@@ -135,7 +135,7 @@ public class PrefillUtil {
     /**
      * This method gets the response data string
      *
-     * @param entity
+     * @param entity a {@link org.apache.http.HttpEntity} object
      * @return String
      */
     public static String getResponseString(HttpEntity entity) {
@@ -152,10 +152,10 @@ public class PrefillUtil {
     /**
      * JWE encryption
      *
-     * @param
-     * @param publicKey
+     * @param publicKey a {@link java.security.interfaces.RSAPublicKey} object
      * @return String
-     * @throws PrefillException
+     * @throws com.americanexpress.sdk.prefill.exception.PrefillException PrefillException
+     * @param prefillData a {@link com.americanexpress.sdk.prefill.models.prefill.PrefillRequest} object
      */
     public static String encrypt(PrefillRequest prefillData, RSAPublicKey publicKey)
             throws PrefillException {
@@ -180,12 +180,11 @@ public class PrefillUtil {
     /**
      * This method is to convert response based on content-type
      *
-     * @param responseObject
-     * @param httpResponse
-     * @return <R> R
-     * @throws IOException
-     * @throws JsonParseException
-     * @throws JsonMappingException
+     * @param responseObject a {@link com.fasterxml.jackson.core.type.TypeReference} object
+     * @param httpResponse a {@link org.apache.http.client.methods.CloseableHttpResponse} object
+     * @throws java.io.IOException exception
+     * @param <R> a R class
+     * @return R object
      */
     public static <R> R generateResponse(TypeReference<R> responseObject, CloseableHttpResponse httpResponse)
             throws IOException {

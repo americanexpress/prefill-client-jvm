@@ -15,11 +15,15 @@ package com.americanexpress.sdk.prefill.exception;
 
 /**
  * The PrefillInvalidStateError class raises an error when the JWE configuration is not valid
- *
  */
 public class PrefillInvalidStateError extends PrefillException {
 
 	private static final String USER_MESSAGE = "JWE configuration is invalid";
 
+	/**
+	 * <p>Constructor for PrefillInvalidStateError.</p>
+	 *
+	 * @param developerMessage a {@link java.lang.String} object
+	 */
 	public PrefillInvalidStateError(String developerMessage) { super(USER_MESSAGE, developerMessage); }
 }
